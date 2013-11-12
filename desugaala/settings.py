@@ -32,12 +32,12 @@ DATABASES['default'] = dj_database_url.config() if 'DATABASE_URL' in os.environ 
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'Europe/Helsinki'
+TIME_ZONE = 'America/Sao_Paulo'
 DATETIME_FORMAT = 'd.m.y H:i'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'fi'
+LANGUAGE_CODE = 'pt-br'
 
 SITE_ID = 1
 
@@ -186,16 +186,5 @@ LOGGING = {
         },
     }
 }
-
-# production only
-PHPBB_AUTH_DB_MODULE = "MySQLdb"
-PHPBB_AUTH_DB_PARAMS = {
-   "host":      "",
-   "user":      "",
-   "passwd":    "", # some libs use key "password"
-   "db":        "", # some libs use key "database"
-}
-PHPBB_AUTH_DB_PARAM_STYLE = "%s"
-PHPBB_AUTH_DB_USERS_TABLE = "users"
 
 GOOGLE_ANALYTICS_TOKEN = '0000000-0'
