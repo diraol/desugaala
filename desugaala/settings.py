@@ -1,10 +1,18 @@
-# Django settings for desugaala project.
+""" Django settings for desugaala project. """
 
 import dj_database_url
 import os
 
+
 def mkpath(*parts):
-    return os.path.abspath(os.path.join(os.path.dirname(__file__), '..', *parts))
+    """Make path.
+
+    Return:
+       An String object with the absolute path
+
+    """
+    relative_path = os.path.join(os.path.dirname(__file__), '..', *parts)
+    return os.path.abspath(relative_path)
 
 DEMO_MODE = True
 
@@ -18,15 +26,17 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {}
-DATABASES['default'] = dj_database_url.config() if 'DATABASE_URL' in os.environ else {
-    'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-    'NAME': 'desugaala.sqlite3',                      # Or path to database file if using sqlite3.
-    'USER': '',                      # Not used with sqlite3.
-    'PASSWORD': '',                  # Not used with sqlite3.
-    'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-    'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-}
-
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.config()
+else:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'desugaala.sqlite3',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+    }
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -80,7 +90,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -111,7 +121,8 @@ ROOT_URLCONF = 'desugaala.urls'
 WSGI_APPLICATION = 'desugaala.wsgi.application'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Put strings here,
+    # like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
@@ -135,10 +146,10 @@ INSTALLED_APPS = (
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 PIPELINE_COMPILERS = (
-  'pipeline.compilers.coffee.CoffeeScriptCompiler',
+    'pipeline.compilers.coffee.CoffeeScriptCompiler',
 )
 
-PIPELINE_COFFEE_SCRIPT_BINARY = 'coffee' # hail PATH
+PIPELINE_COFFEE_SCRIPT_BINARY = 'coffee'  # hail PATH
 
 PIPELINE_JS = {
     'default': {

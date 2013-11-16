@@ -1,10 +1,13 @@
+"""Default urls file from django."""
+
 from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     # Examples:
     # url(r'^$', 'desugaala.views.home', name='home'),
     # url(r'^desugaala/', include('desugaala.foo.urls')),
