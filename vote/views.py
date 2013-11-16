@@ -17,52 +17,21 @@ from .helpers import json_rest, throttle_post
 DEMO_MODE = getattr(settings, 'DEMO_MODE', False)
 
 
-def _fake_perform_checks(func):
+def perform_checks(func):
     @wraps(func)
     def inner(request, data, *args, **kwargs):
-        if data['username'] == 'onjo' and data['password'] == 'aanestetty':
-            return dict(result='already_voted')
+        try:
+            uid = int(data['username'])
+            user_row = dict(user_id=uid)
 
-        elif data['username'] == 'desu' and data['password'] == 'salainen':
-            user_row = dict(user_id=1)
+            if AlreadyVoted.objects.filter(user_id=user_row['user_id']).exists():
+                return dict(result='already_voted')
+
             return func(request, data, user_row, *args, **kwargs)
-
-        else:
+        except ValueError:
             return dict(result='login_failed')
 
     return inner
-
-
-def login_db_with_retry(username, password):
-    try:
-        return login_db(username, password)
-    except OperationalError:
-        connect_to_database()
-        return login_db(username, password)
-
-
-def _actual_perform_checks(func):
-    @wraps(func)
-    def inner(request, data, *args, **kwargs):
-        result, user_row = login_db_with_retry(data['username'], data['password'])
-        if result != 'LOGIN_SUCCESS':
-            return dict(result='login_failed')
-
-        if AlreadyVoted.objects.filter(user_id=user_row['user_id']).exists():
-            return dict(result='already_voted')
-
-        return func(request, data, user_row, *args, **kwargs)
-
-    return inner
-
-if DEMO_MODE:
-    perform_checks = _fake_perform_checks
-else:
-    from phpbb.auth.auth_db import login_db
-    from phpbb.auth.backends import connect_to_database
-    from MySQLdb import OperationalError
-    perform_checks = _actual_perform_checks
-    connect_to_database()
 
 
 def handle_errors(func):

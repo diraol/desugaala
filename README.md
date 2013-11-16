@@ -12,7 +12,6 @@ Includes Bootstrap v2.2.2, Copyright 2012 Twitter, Inc. Licensed under the Apach
     source venv-desugaala/bin/activate
     git clone https://github.com/japsu/desugaala.git
     cd desugaala
-    pip install git+https://github.com/japsu/phpbb-python.git
     pip install -r requirements.txt
     pip install your_database_adapter # hint: psycopg2 or MySQL-python
     cp desugaala/settings.py.dist desugaala/settings.py
