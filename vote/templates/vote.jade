@@ -58,10 +58,11 @@ block content
         a(href="http://en.wikipedia.org/wiki/Schulze_method") método Schulze
         | .
 
-    for category, options in categories_options
-      .hero-unit.category-wrap {{ category.render }}
-    
-    .hero-unit
+    .login-ok
+      for category, options in categories_options
+        .hero-unit.category-wrap {{ category.render }}
+
+    .login-ok.hero-unit
       h2 Enviar
 
       p Acima estavam todas as opções para votar. Envie seu voto pressionando o botão Enviar.
