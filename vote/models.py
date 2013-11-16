@@ -3,7 +3,11 @@ from django.template.loader import render_to_string
 
 from pyvotecore.schulze_npr import SchulzeNPR
 
+
 class Category(models.Model):
+
+    """Defines one Category of 'voting options'."""
+
     title = models.CharField(max_length=64)
     description = models.CharField(max_length=1024, default='', blank=True)
     template = models.CharField(max_length=64, default='category_basic.jade')
@@ -35,6 +39,7 @@ class Category(models.Model):
     def __unicode__(self):
         return self.title
 
+
 class Option(models.Model):
     title = models.CharField(max_length=128)
     category = models.ForeignKey(Category)
@@ -42,25 +47,30 @@ class Option(models.Model):
     def __unicode__(self):
         return self.title
 
+
 class OptionPicture(models.Model):
     option = models.OneToOneField(Option, related_name='picture')
     thumbnail = models.CharField(max_length=256)
     preview = models.CharField(max_length=256)
     link = models.CharField(max_length=256)
 
+
 class Ballot(models.Model):
     ip_address = models.CharField(max_length=16)
     user_agent = models.CharField(max_length=256)
     timestamp = models.DateTimeField()
 
+
 class BallotCategory(models.Model):
     ballot = models.ForeignKey(Ballot)
     category = models.ForeignKey(Category)
+
 
 class BallotOption(models.Model):
     order = models.IntegerField()
     ballot_category = models.ForeignKey(BallotCategory)
     option = models.ForeignKey(Option)
+
 
 class AlreadyVoted(models.Model):
     user_id = models.IntegerField(unique=True)
