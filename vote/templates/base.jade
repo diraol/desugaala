@@ -21,7 +21,7 @@ html
     div.navbar.navbar-inverse.navbar-fixed-top
       div.navbar-inner
         div.container
-          span.brand DesuGaala 2012   
+          span.brand Urna Poli
           ul.nav
             li: a(href='http://desucon.fi/frostbite') Takaisin Desucon Frostbiten sivuille
     
@@ -30,12 +30,14 @@ html
 
     div.container.footer
       p.muted.credit
-        | Kehittyvien conien Suomi ry 2013 &middot; Toteuttanut
-        a(href="http://twitter.com/ssspaju", target="_blank") Santtu "Japsu" Pajukanta
-        |  &middot; Yhteistyössä
-        a(href="http://b2.fi") Säätöyhteisö B2 ry
-    
-    if GOOGLE_ANALYTICS_TOKEN
+        | Bruno Bandeira &middot; Diego Rabatone &middot; Guilherme Zampieri
+      p.muted.credit
+        | © 2013 &middot; Alguns direitos reservados:
+        a(href="http://http://opensource.org/licenses/mit-license.php", target="_blank") MIT License
+        | &middot; &middot; Projeto 
+        a(href="https://github.com/japsu/desugaala") base aqui
+
+     if GOOGLE_ANALYTICS_TOKEN
       script
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', '{{ GOOGLE_ANALYTICS_TOKEN }}']);

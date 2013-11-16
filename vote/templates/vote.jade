@@ -2,44 +2,41 @@ extends base.jade
 
 block content
   .hero-unit.desugaala-banner
-    h1 DesuGaala 2012
-    p Viime kerralla Frostbitessä nähtiin ensimmäistä kertaa "animeskenen vuosijuhla", DesuGaala, jossa jaettiin palkintoja animevuoden 2011 tärkeille ansioille. Nyt DesuGaala palaa Desucon Frostbiteen ja kaikilla on oikeus ja suorastaan velvollisuus äänestää! Desucon Frostbiteen ei tarvitse päästä, kunhan suosikkeja riittää ja niille haluaa antaa äänensä.
-    p DesuGaalassa 2012 palkintoja jaetaan seuraavissa sarjoissa:
+    h1 Urna Poli
+    p Primeiro Parágrafo de texto.
+    p Você poderá votar para:
     ul
       for category, options in categories_options
         li {{ category.title }}
 
   if DEMO_MODE
     .hero-unit
-      h2 Äänestys ei vielä ole käynnissä!
-      p Tämä on vasta keskeneräinen versio äänestysjärjestelmästä.
-      p
-        | Voit kokeilla äänestystä käyttäjätunnuksella
-        tt desu
-        |  ja salasanalla 
-        tt salainen
-        | .
-      p 
-        | Jos haluat nähdä, mitä tapahtuu kun yrittää äänestää tunnuksella joka on jo äänestänyt, kokeile äänestää käyttäjätunnuksella
-        tt onjo
-        |  ja salasanalla 
-        tt aanestetty
-        | .
+      h2 Projeto experimental!
+      p Este é um ambiente de votação experimental, 
+        | desenvolvido para rodar em um raspberry pi e utilizando um
+        | leitor de cartões RFID para autenticação.
+      p Seu desenvolvimento se deu na disciplina PCS2498
+        tt Laboratório de Processadores II
+        | ministrada na 
+        tt Escola Politécnica da Universidad de São Paulo,
+        | sob orientação do Prof. André Hirakawa.
 
   #vote-page
     // hack for scrolling
     #login
 
     .hero-unit
-      h2 Kirjaudu sisään Anikin foorumitunnuksellasi!
+      h2 Autentique-se no sistema!
       p
-        | Äänestämiseen tarvitset tunnuksen
-        a(href='http://forums.aniki.fi', target='_blank') Anikin foorumeille
-        | .
+        | Para votar você deve se autenticar.
+      p
+        | A autenticação pode ser realizada com sua carterinha USP ou com seu login 'USP Digital'.
+      p
+        | Passe sua carterinha no leitor, ou digite seu nusp e senha, e clique em entrar.
 
       #login-form
         div {{ login_form }}
-        button.btn.btn-large.btn-primary#login-button Kirjaudu sisään
+        button.btn.btn-large.btn-primary#login-button Entrar
 
       .already-voted.error
         i.icon-warning-sign
@@ -47,51 +44,51 @@ block content
 
       .login-failed.error
         i.icon-warning-sign
-        |  Sisäänkirjautuminen epäonnistui. Tarkista käyttäjätunnus ja salasana.
+        | Falha de Autenticação. Verifique seu nome de usuáro e senha.
 
       .login-ok.triumph
         i.icon-ok
-        |  Sisäänkirjautuminen onnistui. Voit nyt antaa äänesi alla.
+        | Login realizado com sucesso. Agora você pode votar!
 
     .hero-unit
-      h2 Anna äänesi!
-      p Vedä suosikkisi hiirellä mieleiseesi paremmuusjärjestykseen &ndash; mieluisin ylimmäksi! Voit äänestää niin montaa ehdokasta kuin haluat. Jätä pohjalle punaisen viivan alle ne ehdokkaat, joita et halua äänestää.
+      h2 Participe!
+      p Arraste suas opções para cima da barra vermelha. As opções que ficarem abaixo da barra não recebem voto, as opções que ficarem acima da barra recebem voto.
       p.muted.small
-        | Äänet lasketaan 
-        a(href="http://en.wikipedia.org/wiki/Schulze_method") Schulzen menetelmällä
+        | Os votos são contabilizados usando o 
+        a(href="http://en.wikipedia.org/wiki/Schulze_method") método Schulze
         | .
 
     for category, options in categories_options
       .hero-unit.category-wrap {{ category.render }}
     
     .hero-unit
-      h2 Lähetä
+      h2 Enviar
 
-      p Tässä olivat kaikki sarjat! Lähetä äänesi painamalla Lähetä-painiketta.
+      p Acima estavam todas as opções para votar. Envie seu voto pressionando o botão Enviar.
 
       #not-logged-in.error
         i.icon-warning-sign
-        |  Et ole vielä kirjautunut sisään.
-        a(href='#login') Kirjaudu sisään
+        |  Você ainda não está logado.
+        a(href='#login') Entrar
 
       .already-voted.error
         i.icon-warning-sign
-        |  Olet jo äänestänyt.
+        |  Você já votou antes.
 
-      button.btn.btn-large.btn-primary#send-button Lähetä
+      button.btn.btn-large.btn-primary#send-button Enviar
 
   #thanks-page
     .hero-unit
-      h2 Kiitos äänestäsi!
-      p Äänesi on otettu vastaan. Kiitos äänestäsi!
-      p Tulokset julkistetaan DesuGaalassa Desucon Frostbitessä 16. helmikuuta 2013.
+      h2 Obrigado por participar!
+      p Seu voto foi recebido, Obrigado por votar.
+      p Os resultados serão divulgados ao final do processo.
 
   #oops-page
     .hero-unit
-      h2 Voi rähmä!
-      p Jotain meni pieleen eikä ääntäsi valitettavasti saatu tällä kertaa rekisteröityä!
-      p Yritäthän myöhemmin uudelleen.
+      h2 Ops!
+      p Algo errado aconteceu com seu voto e ele não pode ser registrado.
+      p Por favor, tente novamente em instantes.
       p 
-        | Jos virhe toistuu, voit vaikka tweetata hellästi mutta äkäisesti
-        a(href='https://twitter.com/ssspaju', target='_blank') Japsulle
+        | Se o erro persistir, entre em contato consoco.
+        <!-- a(href='https://twitter.com/ssspaju', target='_blank') Japsulle -->
         | .

@@ -3,7 +3,7 @@ if category.description
   p {{ category.description|safe }}
 
 ul.category(data-category='{{ category.id }}')
-  li.deadline.btn.btn-small.btn-danger Nosta kaikki suosikkisi paremmuusjärjestyksessä tämän linjan yläpuolelle!
+  li.deadline.btn.btn-small.btn-danger Posicione as opções em que deseja votar acima desta barra, em ordem de preferência.
   for option in options
     li(data-option='{{ option.id }}').option.btn
       i.icon-resize-vertical

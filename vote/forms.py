@@ -2,5 +2,6 @@
 from django import forms
 
 class LoginForm(forms.Form):
-  username = forms.CharField(label=u'Käyttäjänimi')
-  password = forms.CharField(label=u'Salasana', widget=forms.PasswordInput)
+    """Classe de login, apenas com usuário e senha"""
+    username = forms.CharField(label=u'Usuário')
+    password = forms.CharField(label=u'Senha', widget=forms.PasswordInput)
