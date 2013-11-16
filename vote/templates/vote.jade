@@ -6,12 +6,8 @@ block content
     p Viime kerralla Frostbitessä nähtiin ensimmäistä kertaa "animeskenen vuosijuhla", DesuGaala, jossa jaettiin palkintoja animevuoden 2011 tärkeille ansioille. Nyt DesuGaala palaa Desucon Frostbiteen ja kaikilla on oikeus ja suorastaan velvollisuus äänestää! Desucon Frostbiteen ei tarvitse päästä, kunhan suosikkeja riittää ja niille haluaa antaa äänensä.
     p DesuGaalassa 2012 palkintoja jaetaan seuraavissa sarjoissa:
     ul
-      li Vuoden tapahtuma
-      li Vuoden kotimainen mangajulkaisu
-      li Vuoden kunniavieras
-      li Vuoden skeneilmiö
-      li Vuoden puheohjelma
-      li Vuoden cosplay
+      for category, options in categories_options
+        li {{ category.title }}
 
   if DEMO_MODE
     .hero-unit
