@@ -40,8 +40,10 @@ def handle_errors(func):
 
 @ensure_csrf_cookie
 def vote_page(request):
-    categories = Category.objects.all()
+    querySet = Category.objects.all()
     options = []
+    categories = list(querySet)
+    shuffle(categories)
     for category in categories:
         categoryOptions = list(category.option_set.all())
         shuffle(categoryOptions)
