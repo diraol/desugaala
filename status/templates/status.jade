@@ -44,7 +44,7 @@ block content
         for option, num_votes, percentage in options
           tr
             td.title {{ option.title|truncatewords:4 }}
-            td.votes {{ num_votes }} ääntä
+            td.votes {{ num_votes }} voto(s)
             td.palks
               div(class='progress {% cycle "progress-success" "" %}')
                 .bar(style='width: {{ percentage }}%')
