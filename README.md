@@ -8,6 +8,7 @@ Includes Bootstrap v2.2.2, Copyright 2012 Twitter, Inc. Licensed under the Apach
 
 ## Getting Started
 
+*** Default Instalation process
     virtualenv venv-desugaala
     source venv-desugaala/bin/activate
     git clone https://github.com/japsu/desugaala.git
@@ -20,3 +21,6 @@ Includes Bootstrap v2.2.2, Copyright 2012 Twitter, Inc. Licensed under the Apach
     ./manage.py migrate
     ./manage.py loaddata vote desugaala2012
     ./manage.py run_gunicorn
+
+*** Automated instalation process
+    sudo ./install.sh
