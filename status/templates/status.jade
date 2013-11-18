@@ -1,29 +1,29 @@
 extends base
 
 block content
-  h1 Väliaikatilanne
+  h1 Situação atual
 
   table.table
     tbody
       tr
-        th Päivitetty
-        td {{ timestamp|date:"DATETIME_FORMAT" }} (päivittyy 5 minuutin välein)
+        th Atualizado em
+        td {{ timestamp|date:"DATETIME_FORMAT" }} (atualizado a cada 5 minutos)
       tr
-        th Ääniä yhteensä
-        td {{ num_votes }} ääntä
+        th Total de votos
+        td {{ num_votes }} votos
 
   h2 Tilanne sarjoittain
 
   table.table.table-striped
     thead
-      th Sarja
-      th Ääniä sarjassa
-      th Tällä hetkellä johdossa
+      th Cargo
+      th Votos
+      th Liderança atual
     tbody
       for category, winner, tied_winners, category_num_votes in categories
         tr
           th {{ category.title }}
-          td {{ category_num_votes }} ääntä
+          td {{ category_num_votes }} voto(s)
           td
             if tied_winners
               | Jaettu voitto:
